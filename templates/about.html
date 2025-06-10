@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang BMI | BMICalc</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: '#eff6ff',
+                100: '#dbeafe',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8',
+                900: '#1e3a8a'
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg border-b-4 border-gradient-to-r from-blue-500 to-purple-600">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-center py-4">
+              <div class="flex items-center space-x-3">
+                  <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-2 rounded-xl">
+                      <i class="fas fa-calculator text-white text-xl"></i>
+                  </div>
+                  <div>
+                      <h1 class="text-2xl font-bold gradient-text">BMI</h1>
+                      <span class="text-sm text-gray-600">Calculator</span>
+                  </div>
+              </div>
+              
+              <nav class="hidden md:flex space-x-6">
+                <a href="{{ url_for('home') }}" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Beranda</a>
+                <a href="{{ url_for('about') }}" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Tentang BMI</a>
+                <a href="{{ url_for('contact') }}" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Kontak</a>
+            </nav>
+              
+              <button class="md:hidden text-gray-700">
+                  <i class="fas fa-bars text-xl"></i>
+              </button>
+          </div>
+      </div>
+  </header>
+    <!-- Main Content -->
+    <main class="flex-1 py-8 px-4">
+      <div class="max-w-4xl mx-auto">
+        <!-- Page Title -->
+        <div class="text-center mb-8">
+          <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent mb-2">
+            Tentang BMI
+          </h1>
+          <p class="text-gray-600 text-lg">
+            Memahami Body Mass Index dan Pentingnya untuk Kesehatan
+          </p>
+        </div>
+
+        <!-- Content -->
+        <div class="space-y-8">
+          <!-- What is BMI -->
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h2 class="flex items-center space-x-2 text-2xl font-bold text-gray-800 mb-6">
+              <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span>Apa itu BMI?</span>
+            </h2>
+            <div class="space-y-4 text-gray-600">
+              <p>Body Mass Index (BMI) atau Indeks Massa Tubuh (IMT) adalah nilai yang diambil dari perhitungan antara berat badan (kg) dan tinggi badan (m) seseorang. BMI adalah alat screening yang umum digunakan untuk mengindikasikan apakah seseorang berada dalam kategori berat badan yang sehat.</p>
+              
+              <p>BMI dihitung dengan membagi berat badan dalam kilogram dengan kuadrat tinggi badan dalam meter:</p>
+              
+              <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+                <span class="text-xl font-semibold text-blue-700">BMI = Berat (kg) / [Tinggi (m)]²</span>
+              </div>
+              
+              <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                <p class="text-yellow-800"><strong>Catatan:</strong> BMI tidak mengukur lemak tubuh secara langsung, tetapi penelitian menunjukkan bahwa BMI berkorelasi dengan pengukuran lemak tubuh langsung.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- BMI Categories -->
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h2 class="flex items-center space-x-2 text-2xl font-bold text-gray-800 mb-6">
+              <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+              <span>Kategori BMI</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="border border-blue-200 rounded-lg overflow-hidden">
+                <div class="bg-blue-500 text-white p-4 flex justify-between items-center">
+                  <span class="font-semibold">Kekurangan Berat Badan</span>
+                  <span class="font-bold">&lt; 18.5</span>
+                </div>
+                <div class="p-4">
+                  <p class="text-sm text-gray-600">BMI kurang dari 18.5 mengindikasikan bahwa seseorang kekurangan berat badan. Ini dapat meningkatkan risiko masalah kesehatan seperti malnutrisi, anemia, osteoporosis, dan sistem kekebalan tubuh yang lemah.</p>
+                </div>
+              </div>
+              
+              <div class="border border-green-200 rounded-lg overflow-hidden">
+                <div class="bg-green-500 text-white p-4 flex justify-between items-center">
+                  <span class="font-semibold">Normal</span>
+                  <span class="font-bold">18.5 - 24.9</span>
+                </div>
+                <div class="p-4">
+                  <p class="text-sm text-gray-600">BMI antara 18.5 dan 24.9 mengindikasikan berat badan normal. Mempertahankan berat badan dalam rentang ini dapat membantu mengurangi risiko penyakit kronis yang terkait dengan kelebihan atau kekurangan berat badan.</p>
+                </div>
+              </div>
+              
+              <div class="border border-yellow-200 rounded-lg overflow-hidden">
+                <div class="bg-yellow-500 text-white p-4 flex justify-between items-center">
+                  <span class="font-semibold">Kelebihan Berat Badan</span>
+                  <span class="font-bold">25.0 - 29.9</span>
+                </div>
+                <div class="p-4">
+                  <p class="text-sm text-gray-600">BMI antara 25.0 dan 29.9 mengindikasikan kelebihan berat badan. Ini dapat meningkatkan risiko penyakit jantung, stroke, diabetes tipe 2, dan beberapa jenis kanker.</p>
+                </div>
+              </div>
+              
+              <div class="border border-red-200 rounded-lg overflow-hidden">
+                <div class="bg-red-500 text-white p-4 flex justify-between items-center">
+                  <span class="font-semibold">Obesitas</span>
+                  <span class="font-bold">&ge; 30.0</span>
+                </div>
+                <div class="p-4">
+                  <p class="text-sm text-gray-600">BMI 30.0 atau lebih mengindikasikan obesitas. Obesitas secara signifikan meningkatkan risiko berbagai penyakit kronis dan masalah kesehatan, termasuk penyakit jantung, stroke, diabetes tipe 2, tekanan darah tinggi, dan beberapa jenis kanker.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Health Tips -->
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h2 class="flex items-center space-x-2 text-2xl font-bold text-gray-800 mb-6">
+              <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+              <span>Tips Menjaga BMI yang Sehat</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-gray-50 rounded-lg p-6 text-center">
+                <div class="text-4xl mb-4">🥗</div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Pola Makan Seimbang</h3>
+                <p class="text-sm text-gray-600">Konsumsi makanan yang kaya akan buah-buahan, sayuran, biji-bijian, dan protein tanpa lemak. Batasi makanan yang tinggi gula, garam, dan lemak jenuh.</p>
+              </div>
+              
+              <div class="bg-gray-50 rounded-lg p-6 text-center">
+                <div class="text-4xl mb-4">🏃‍♂️</div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Aktivitas Fisik Teratur</h3>
+                <p class="text-sm text-gray-600">Lakukan minimal 150 menit aktivitas fisik intensitas sedang atau 75 menit aktivitas fisik intensitas tinggi setiap minggu.</p>
+              </div>
+              
+              <div class="bg-gray-50 rounded-lg p-6 text-center">
+                <div class="text-4xl mb-4">💧</div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Hidrasi yang Cukup</h3>
+                <p class="text-sm text-gray-600">Minum banyak air untuk menjaga hidrasi dan membantu metabolisme tubuh berfungsi dengan baik.</p>
+              </div>
+              
+              <div class="bg-gray-50 rounded-lg p-6 text-center">
+                <div class="text-4xl mb-4">😴</div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Tidur yang Berkualitas</h3>
+                <p class="text-sm text-gray-600">Dapatkan 7-9 jam tidur berkualitas setiap malam untuk mendukung metabolisme dan kesehatan secara keseluruhan.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-6">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="flex flex-col items-center space-y-4">
+          <div class="flex flex-wrap justify-center space-x-6">
+            <a href="#" class="hover:text-white transition-colors">Kebijakan Privasi</a>
+            <a href="#" class="hover:text-white transition-colors">Syarat & Ketentuan</a>
+            <a href="#" class="hover:text-white transition-colors">FAQ</a>
+          </div>
+          <div class="text-sm text-gray-500">
+            &copy; 2025 BMICalc. Hak Cipta Dilindungi.
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
