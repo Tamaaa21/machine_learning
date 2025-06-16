@@ -134,8 +134,8 @@
                 </div>
 
                 <!-- Results Section -->
-                  <div id="resultSection" class="bg-white rounded-2xl shadow-xl p-8 animate-fade-in">
-                    <div class="flex items-center space-x-3 mb-8">
+                <div id="resultSection" class="bg-white rounded-2xl shadow-xl p-8 animate-fade-in">
+                                        <div class="flex items-center space-x-3 mb-8">
                         <div class="bg-gradient-to-r from-yellow-400 to-orange-500 p-3 rounded-xl">
                             <i class="fas fa-chart-line text-white text-lg"></i>
                         </div>
@@ -147,8 +147,7 @@
         
                  
         {% if hasil_prediksi %}
-        <div class="max-w-md mx-auto">
-            <div class="text-center mb-8 animate-fade-in">
+        <div class="max-w-md mx-auto">            <div class="text-center mb-8 animate-fade-in">
                 <div class="{{ hasil_prediksi|getColorClass }} rounded-full w-32 h-32 flex items-center justify-center mx-auto mb-6 shadow-lg transition-transform hover:scale-105">
                     <i class="{{ hasil_prediksi|getIconClass }} text-white text-4xl"></i>
                 </div>
@@ -201,27 +200,27 @@
                
         </div>
 
-        <div class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white">
-
-
-            <h3 class="text-xl font-bold mb-4 text-center {{ hasil_prediksi|getColorClass }} text-white py-2 rounded-lg">
-                Saran Kesehatan
-            </h3>
-            <div class="prose max-w-none">
-                {{ saran_kesehatan|safe }}
+    </div>
+        <!-- Saran Kesehatan (Full Width) -->
+        <div class="w-full mt-8 px-0">  <!-- Gunakan px-0 untuk full width -->
+            <div class="bg-white p-6 rounded-xl">
+                <h3 class="text-xl font-bold mb-4 text-center {{ hasil_prediksi|getColorClass }} text-white py-2 rounded-lg">
+                    Saran Kesehatan
+                </h3>
+                <div class="prose max-w-none w-full">
+                    {{ saran_kesehatan|safe }}
+                </div>
+                
+                <div class="mt-4 p-4 bg-yellow-50 border-l-4 border-yellow-400">
+                    <p class="text-yellow-700">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        <strong>Perhatian:</strong> Saran ini bersifat umum. Untuk rekomendasi personal, 
+                        konsultasikan dengan dokter atau ahli gizi.
+                    </p>
+                </div>
             </div>
-            
-            <div class="mt-4 p-4 bg-yellow-50 border-l-4 border-yellow-400">
-                <p class="text-yellow-700">
-                    <i class="fas fa-info-circle mr-2"></i>
-                    <strong>Perhatian:</strong> Saran ini bersifat umum. Untuk rekomendasi personal, 
-                    konsultasikan dengan dokter atau ahli gizi.
-                </p>
-            </div>
-            
-            
-            
-                            </div>
+        </div>
+
                             {% else %}
                             <div class="flex flex-col items-center justify-center h-48 md:h-64 text-center relative z-10">
                               <svg class="w-12 h-12 md:w-16 md:h-16 text-gray-300 mb-3 md:mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -229,8 +228,10 @@
                               </svg>
                               <p class="text-gray-500 text-sm md:text-base px-4">Masukkan data Anda dan klik "Hitung BMI" untuk melihat hasil prediksi</p>
                             </div>
-        </div>
                             {% endif %}
+                        </div>
+                         
+                    
     </main>
 
     <!-- Footer -->
@@ -268,7 +269,7 @@ function getIconClass(prediction) {
     prediction = prediction.toLowerCase();
     
     if (prediction.includes('underweight')) {
-        return 'fas fa-exclamation-circle'; // Icon untuk underweight
+        return 'fa-solid fa-arrow-down'; // Icon untuk underweight
     } else if (prediction.includes('normal')) {
         return 'fas fa-check-circle'; // Icon untuk normal
     } else if (prediction.includes('overweight')) {

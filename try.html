@@ -1,251 +1,139 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Klasifikasi BMI - Kalkulator BMI Modern</title>
-    <meta name="description" content="Kalkulator BMI modern untuk menghitung dan mengklasifikasi Body Mass Index Anda dengan mudah">
-    <meta name="keywords" content="BMI, kalkulator BMI, body mass index, kesehatan, klasifikasi BMI">
-    <meta property="og:title" content="Klasifikasi BMI - Kalkulator BMI Modern">
-    <meta property="og:description" content="Kalkulator BMI modern untuk menghitung dan mengklasifikasi Body Mass Index Anda">
-    <meta name="twitter:title" content="Klasifikasi BMI - Kalkulator BMI Modern">
-    <meta name="twitter:description" content="Kalkulator BMI modern untuk menghitung dan mengklasifikasi Body Mass Index Anda">
+    <title>Prediksi Status Gizi Balita</title>
+    <meta name="description" content="Sistem prediksi status gizi balita berbasis AI untuk membantu orang tua memantau perkembangan anak">
+    <meta name="keywords" content="gizi balita, prediksi, kesehatan anak, stunting">
+    <meta property="og:title" content="Prediksi Status Gizi Balita">
+    <meta property="og:description" content="Pantau perkembangan gizi anak Anda dengan sistem prediksi kami">
+    <meta name="twitter:title" content="Prediksi Status Gizi Balita">
+    <meta name="twitter:description" content="Pantau perkembangan gizi anak Anda dengan sistem prediksi kami">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); }
+        .result-glow { box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15); }
+    </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+<body class="bg-gray-50">
     <!-- Header -->
-    <header class="bg-white shadow-lg border-b-4 border-gradient-to-r from-blue-500 to-purple-600">
+    <nav class="bg-slate-900 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-3">
-                    <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-2 rounded-xl">
-                        <i class="fas fa-calculator text-white text-xl"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-2xl font-bold gradient-text">BMI</h1>
-                        <span class="text-sm text-gray-600">Calculator</span>
-                    </div>
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-baby text-blue-400 text-2xl"></i>
+                    <span class="text-white text-xl font-bold">GiziBalita</span>
                 </div>
-                
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Beranda</a>
-                    <a href="#" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Tentang BMI</a>
-                    <a href="#" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Kontak</a>
-                </nav>
-                
-                <button class="md:hidden text-gray-700">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-white hover:text-blue-300 transition-colors">Home</a>
+                    <a href="#" class="text-gray-300 hover:text-blue-300 transition-colors">Tentang</a>
+                    <a href="#" class="text-gray-300 hover:text-blue-300 transition-colors">Kontak</a>
+                </div>
             </div>
         </div>
-    </header>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Prediksi Status Gizi Balita</h1>
+            <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+                Pantau perkembangan gizi anak Anda dengan sistem prediksi kami
+            </p>
+            <div class="mt-8 flex justify-center">
+                <div class="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="text-sm">Aman & Terpercaya</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Main Content -->
-    <main class="flex-1 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 animate-fade-in">
-                <h1 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Kalkulator BMI</h1>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Hitung dan klasifikasi Body Mass Index Anda dengan mudah menggunakan kalkulator modern kami
-                </p>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Form -->
+            <div class="bg-white rounded-2xl shadow-xl p-6 card-hover">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="bg-blue-500 p-2 rounded-lg">
+                        <i class="fas fa-edit text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Form Prediksi</h3>
+                </div>
+                
+                <form id="predictionForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Umur (bulan)</label>
+                        <input type="number" id="umur" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Kelamin</label>
+                        <select id="jenis_kelamin" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Pilih Jenis Kelamin</option>
+                            <option value="laki-laki">Laki-laki</option>
+                            <option value="perempuan">Perempuan</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Tinggi Badan (cm)</label>
+                        <input type="number" step="0.1" id="tinggi_badan" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    
+                    <button type="submit" id="submitBtn"
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2">
+                        <i class="fas fa-calculator"></i>
+                        <span>Prediksi Sekarang</span>
+                    </button>
+                </form>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Form Section -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 animate-fade-in">
-                    <div class="flex items-center space-x-3 mb-8">
-                        <div class="bg-gradient-to-r from-green-400 to-blue-500 p-3 rounded-xl">
-                            <i class="fas fa-user-plus text-white text-lg"></i>
-                        </div>
-                        <h2 class="text-2xl font-bold text-gray-800">Masukkan Data Anda</h2>
+            <!-- Result -->
+            <div class="bg-white rounded-2xl shadow-xl p-6" id="resultContainer">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="bg-blue-500 p-2 rounded-lg">
+                        <i class="fas fa-chart-line text-white"></i>
                     </div>
-
-                    <form method="POST" class="space-y-4 md:space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="space-y-2">
-                                <label for="nama" class="block text-sm font-semibold text-gray-700">
-                                    <i class="fas fa-user mr-2 text-blue-500"></i>Nama Lengkap
-                                </label>
-                                <input type="text" id="nama" name="nama" required placeholder="Masukkan nama lengkap"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white">
-                            </div>
-
-                            <div class="space-y-2">
-                                <label for="tinggi" class="block text-sm font-semibold text-gray-700">
-                                    <i class="fas fa-ruler-vertical mr-2 text-green-500"></i>Tinggi Badan (cm)
-                                </label>
-                                <input type="number" id="tinggi" name="tinggi" required placeholder="Contoh: 170"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="space-y-2">
-                                <label for="berat" class="block text-sm font-semibold text-gray-700">
-                                    <i class="fas fa-weight mr-2 text-purple-500"></i>Berat Badan (kg)
-                                </label>
-                                <input type="number" id="berat" name="berat" step="0.1" required placeholder="Contoh: 65.5"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white">
-                            </div>
-
-                            <div class="space-y-2">
-                                <label for="usia" class="block text-sm font-semibold text-gray-700">
-                                    <i class="fas fa-calendar-alt mr-2 text-orange-500"></i>Usia (tahun)
-                                </label>
-                                <input type="number" id="usia" name="usia" required placeholder="Contoh: 25"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white">
-                            </div>
-                        </div>
-
-                        <div class="space-y-2">
-                            <label for="jenkel" class="block text-sm font-semibold text-gray-700">
-                                <i class="fas fa-venus-mars mr-2 text-pink-500"></i>Jenis Kelamin
-                            </label>
-                            <select id="jenkel" name="jenkel"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white">
-                                <option value="Pria">Pria</option>
-                                <option value="Wanita">Wanita</option>
-                            </select>
-                        </div>
-
-                        <button type="submit"
-                            class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-4 px-6 rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                            <i class="fas fa-calculator mr-2"></i>Hitung BMI Sekarang
-                        </button>
-                    </form>
+                    <h3 class="text-xl font-semibold text-gray-800">Hasil Prediksi</h3>
                 </div>
-
-                <!-- Results Section -->
-         <!-- Results Section -->
-<div id="resultSection" class="bg-white rounded-2xl shadow-xl p-8 animate-fade-in">
-    <div class="flex items-center space-x-3 mb-8">
-        <div class="bg-gradient-to-r from-yellow-400 to-orange-500 p-3 rounded-xl">
-            <i class="fas fa-chart-line text-white text-lg"></i>
-        </div>
-        <h2 class="text-2xl font-bold text-gray-800">Hasil Prediksi</h2>
-    </div>
-    
-    {% if not show_results %}
-    <div id="placeholderResult" class="text-center py-12">
-        <div class="bg-gray-100 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-info-circle text-gray-400 text-3xl"></i>
-        </div>
-        <p class="text-gray-600 text-lg">
-            Masukkan data Anda dan klik "Hitung BMI" untuk melihat hasil prediksi
-        </p>
-    </div>
-    {% else %}
-    <div id="bmiResult">
-        <div class="space-y-6">
-            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6">
-                <h3 class="text-lg font-semibold text-gray-700 mb-2">Informasi Dasar</h3>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <p class="text-sm text-gray-500">Nama</p>
-                        <p class="font-medium">{{ nama or '-' }}</p>
-                    </div>
-                    <div>
-                        <p class="text-sm text-gray-500">Jenis Kelamin</p>
-                        <p class="font-medium">{{ jenkel }}</p>
-                    </div>
-                    <div>
-                        <p class="text-sm text-gray-500">Usia</p>
-                        <p class="font-medium">{{ usia }} tahun</p>
-                    </div>
-                    <div>
-                        <p class="text-sm text-gray-500">Tinggi/Berat</p>
-                        <p class="font-medium">{{ tinggi }} cm / {{ berat }} kg</p>
-                    </div>
+                
+                <div id="emptyResult" class="text-center">
+                    <i class="fas fa-search text-gray-400 text-6xl mb-4"></i>
+                    <h4 class="text-xl font-semibold text-gray-800 mb-2">Belum Ada Hasil</h4>
+                    <p class="text-gray-500">Silakan isi form prediksi untuk melihat hasil</p>
                 </div>
-            </div>
-            
-            <div class="bg-gradient-to-r from-green-50 to-teal-50 rounded-xl p-6">
-                <h3 class="text-lg font-semibold text-gray-700 mb-4">Hasil BMI</h3>
-                <div class="flex items-center justify-center space-x-8">
-                    <div class="text-center">
-                        <div class="text-5xl font-bold text-gray-800">{{ bmi }}</div>
-                        <p class="text-sm text-gray-500">BMI Score</p>
-                    </div>
-                    <div class="flex-1">
-                        <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
-                            <div class="h-full {{ 'bg-blue-500' if bmi < 18.5 else 'bg-green-500' if bmi < 25 else 'bg-yellow-500' if bmi < 30 else 'bg-red-500' }} rounded-full" 
-                                 style="width: {{ '25%' if bmi < 18.5 else '50%' if bmi < 25 else '75%' if bmi < 30 else '100%' }}"></div>
+                
+                <div id="result" class="hidden">
+                    <div class="bg-gray-50 rounded-xl p-6 mb-6">
+                        <h4 class="text-lg font-medium text-gray-800 mb-4">Status Gizi Balita</h4>
+                        <div class="flex items-center space-x-3 mb-4">
+                            <i id="statusIcon" class="text-3xl"></i>
+                            <span id="predictionValue" class="text-2xl font-bold"></span>
                         </div>
-                        <div class="flex justify-between text-xs text-gray-500 mt-2">
-                            <span>Underweight</span>
-                            <span>Normal</span>
-                            <span>Overweight</span>
-                            <span>Obese</span>
+                        <p id="predictionDescription" class="text-gray-600 mb-4"></p>
+                    </div>
+                    
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-info-circle text-blue-600 mt-0.5"></i>
+                            <p id="adviceText" class="text-blue-800 text-sm"></p>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6">
-                <h3 class="text-lg font-semibold text-gray-700 mb-2">Klasifikasi</h3>
-                <div class="flex items-center space-x-4">
-                    <div class="p-3 rounded-full {{ 'bg-blue-500' if kategori == 'Underweight' else 'bg-green-500' if kategori == 'Normal' else 'bg-yellow-500' if kategori == 'Overweight' else 'bg-red-500' }}">
-                        <i class="fas {{ 'fa-arrow-down' if kategori == 'Underweight' else 'fa-check' if kategori == 'Normal' else 'fa-exclamation' if kategori == 'Overweight' else 'fa-times' }} text-white"></i>
-                    </div>
-                    <div>
-                        <p class="font-bold text-lg {{ 'text-blue-600' if kategori == 'Underweight' else 'text-green-600' if kategori == 'Normal' else 'text-yellow-600' if kategori == 'Overweight' else 'text-red-600' }}">{{ kategori }}</p>
-                        <p class="text-sm text-gray-600">
-                            {% if kategori == 'Underweight' %}
-                                Berat badan kurang dari normal
-                            {% elif kategori == 'Normal' %}
-                                Berat badan ideal
-                            {% elif kategori == 'Overweight' %}
-                                Berat badan berlebih
-                            {% elif kategori == 'Obese' %}
-                                Obesitas
-                            {% else %}
-                                Tidak diketahui
-                            {% endif %}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="bg-yellow-50 rounded-xl p-6">
-                <h3 class="text-lg font-semibold text-gray-700 mb-2">Saran Kesehatan</h3>
-                <p class="text-gray-600">
-                    {% if kategori == 'Underweight' %}
-                        Anda perlu menambah berat badan. Konsumsi makanan bergizi tinggi dan lakukan latihan kekuatan untuk membangun otot.
-                    {% elif kategori == 'Normal' %}
-                        Pertahankan berat badan ideal Anda dengan pola makan seimbang dan olahraga teratur.
-                    {% elif kategori == 'Overweight' %}
-                        Disarankan untuk menurunkan berat badan dengan diet sehat dan olahraga teratur.
-                    {% elif kategori == 'Obese' %}
-                        Segera konsultasikan dengan dokter atau ahli gizi untuk program penurunan berat badan yang sehat.
-                    {% else %}
-                        Konsultasikan dengan profesional kesehatan untuk saran lebih lanjut.
-                    {% endif %}
-                </p>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-</div>
             </div>
         </div>
     </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white mt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="flex space-x-6 mb-4 md:mb-0">
-                    <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200">Kebijakan Privasi</a>
-                    <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200">Syarat & Ketentuan</a>
-                    <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200">FAQ</a>
-                </div>
-                <div class="text-gray-300 text-sm">© 2025 BMICalc. Hak Cipta Dilindungi.</div>
-            </div>
-        </div>
-    </footer>
 
     <script src="script.js"></script>
 </body>
